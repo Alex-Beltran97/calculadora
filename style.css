@@ -1,24 +1,56 @@
+body {
+	background-image: url(img/background.jpg);	
+	background-size: cover;
+	font-family: helvetica;
+}
+
+#fondo{
+	width: 17.5%;
+	margin-top: 100px;
+	background-color: #e4d8ab;
+	border: 5px solid #b2854a;
+	border-radius: 10px;
+	box-shadow: 50px 50px 50px black;
+
+}
 
 #contenedor{	
-	width: 140px;
-	border: 10px solid black;
+	width: 250px;
 	padding: 3px;
 
 }
 
 .boton{
+	margin-top: 15px;
 	border: none;
 	border-radius: 10px;
-	width: 40px;
-	height: 40px;
-	font-size: 20px;
+	width: 61px;
+	height: 61px;
+	font-size: 30px;
+	background: #EFECDE;
+}
+
+.boton:hover{
+	background: white;
+}
+
+.boton#igual:active{
+	background: #7af9ab;
 }
 
 #calculo{
 	width: 150px;
 	height: 40px;
-	border: 10px solid black;
 	font-size: 30px;
+}
+
+footer label{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+footer label::selection{
+	color: #B2854A;
 }
 
 
