@@ -1,393 +1,173 @@
-var num1 = 0;
-var num2 = 0;
-var boton_1 = 0;
-var boton_2 = 0;
-var boton_3 = 0;
-var boton_4 = 0;
-var boton_5 = 0;
-var boton_6 = 0;
-var boton_7 = 0;
-var boton_8 = 0;
-var boton_9 = 0;
-var boton_0 = 0;
-var suma = false;
+const one = document.querySelector(".btn_n1");
+const two = document.querySelector(".btn_n2");
+const three = document.querySelector(".btn_n3");
+const four = document.querySelector(".btn_n4");
+const five = document.querySelector(".btn_n5");
+const six = document.querySelector(".btn_n6");
+const seven = document.querySelector(".btn_n7");
+const eigth = document.querySelector(".btn_n8");
+const nine = document.querySelector(".btn_n9");
+const zero = document.querySelector(".btn_n0");
+const comma = document.querySelector(".btn_comma");
+const suma = document.querySelector(".btn_suma");
+const resta = document.querySelector(".btn_resta");
+const multi = document.querySelector(".btn_multi");
+const divi = document.querySelector(".btn_div");
+const btnResult = document.querySelector(".btn_result");
+const prompt = document.querySelector(".prompt");
+const result = document.querySelector(".result");
+const clear = document.querySelector(".btn_clear");
 
+let first = [];
+let second = [];
+let add = false;
+let substract = false;
+let multiply = false;
+let divide = false;
+let float = [];
 
+clear.addEventListener("click",()=>{
+	prompt.innerHTML = "";
+	result.innerHTML = "=0";
+	first = [];
+	second = [];
+	add = false;
+	substract = false;
+	multiply = false;
+	divide = false;
+	float = [];
+})
 
-const contenedor = document.getElementById("contenedor");
-const calculo = document.getElementById("calculo");
-const respuesta = document.getElementById("respuesta");
-const boton1 = document.getElementById("1");
-const boton2 = document.getElementById("2");
-const boton3 = document.getElementById("3");
-const boton4 = document.getElementById("4");
-const boton5 = document.getElementById("5");
-const boton6 = document.getElementById("6");
-const boton7 = document.getElementById("7");
-const boton8 = document.getElementById("8");
-const boton9 = document.getElementById("9");
-const boton0 = document.getElementById("0");
-const botSuma = document.getElementById("suma");
-const botIgual = document.getElementById("igual");
-
-
-
-boton1.addEventListener("click",function(){
-
-	boton_1 += 1;
-
-	if (suma == true) {
-		num2 += 1;
+const calculo = (num)=>{
+	if (add||substract||multiply||divide){
+		second.push(num);
 	}else{
-		num1 += 1;
+		first.push(num);
+	}
+}
+
+const show = (symbol)=>{
+	
+	let item = document.createElement("span");
+	let textItem = document.createTextNode(symbol);
+	item.appendChild(textItem);
+	prompt.appendChild(item);
+}
+
+suma.addEventListener("click",()=>{
+	add =!add;
+
+	show("+");
+	
+});
+
+resta.addEventListener("click",()=>{
+	substract =!substract;
+
+	show("-");
+});
+
+multi.addEventListener("click",()=>{
+	multiply =!multiply;
+
+	show("*");
+});
+
+divi.addEventListener("click",()=>{
+	divide =!divide;
+
+	show("/");
+});
+
+comma.addEventListener("click",()=>{
+	float.push(1);
+});
+
+const buttons = (variable,number)=>{
+	prompt.innerHTML = "";
+
+	
+	variable.addEventListener("click",()=>{
+		
+		calculo(number);
+
+		show(number);
+	})
+}
+
+
+buttons(one,1);
+buttons(two,2);
+buttons(three,3);
+buttons(four,4);
+buttons(five,5);
+buttons(six,6);
+buttons(seven,7);
+buttons(eigth,8);
+buttons(nine,9);
+buttons(zero,0);
+buttons(comma,".");
+
+const realTime = ()=>{
+	console.log(first);
+	console.log(second);
+	console.log(first.join(""));
+	console.log(second.join(""));
+	let number1 = first.join("");
+	let number2 = second.join("");
+
+	number1 = parseFloat(number1);
+	number2 = parseFloat(number2);
+
+	console.log(number1);
+	console.log(number2);
+	console.log(number1+number2);
+}
+
+const showResult = (res)=>{
+	let item = document.createElement("span");
+	let textItem = document.createTextNode("="+res);
+	item.appendChild(textItem);
+	result.innerHTML = "";
+	result.appendChild(item);
+
+	realTime();
+}
+
+btnResult.addEventListener("click",()=>{
+	let num1 = first.join("")
+	let num2 = second.join("")
+
+	if (float.length){
+		num1 = parseFloat(num1);
+		num2 = parseFloat(num2);
+	}else{
+		num1 = parseInt(num1);
+		num2 = parseInt(num2);
 	}
 
-	if (boton_1 == 2 && suma==false) {
-		num1 = 11;
-	}else if (boton_1 == 3 && suma==false){
-		num1 = 111;
-	}else if (boton_1 == 4 && suma==false){
-		num1 = 1111;
+
+	if (add){
+		let res = num1+num2;
+		showResult(res);
+	} else if (substract){
+		let res = num1-num2;
+		showResult(res);
+	}else if (multiply){
+		let res = num1*num2;
+		showResult(res);
+	}else if (divide){
+		let res = num1/num2;
+		showResult(res);
+	}else{
+		let res = num1;
+		if(res){
+			showResult(res);
+		}else{
+			res = 0;
+			showResult(res);
+		}
 	}
 
-
-	if (boton_1 == 2 && suma==true) {
-		num2 = 11;
-	}else if (boton_1 == 3 && suma==true){
-		num2 = 111;
-	}else if (boton_1 == 4 && suma==true){
-		num2 = 1111;
-	}
-
-	if (boton_2 == 1 && boton_1 == 1  && suma==false) {
-		num1 = 21;
-	}
-
-
-	const item1 = document.createElement("span");
-	const textoItem1 = document.createTextNode("1");
-	item1.appendChild(textoItem1);
-	calculo.appendChild(item1);
 	
 })
-boton2.addEventListener("click",function(){
-	
-	boton_2 += 1;
-
-	if (suma == true) {
-		num2 += 2;
-	}else{
-		num1 += 2;
-	}
-
-	if (boton_2 == 2 && suma==false) {
-		num1 = 22;
-	}else if (boton_2 == 3 && suma==false){
-		num1 = 222;
-	}else if (boton_2 == 4 && suma==false){
-		num1 = 2222;
-	}
-
-
-	if (boton_2 == 2 && suma==true) {
-		num2 = 22;
-	}else if (boton_2 == 3 && suma==true){
-		num2 = 222;
-	}else if (boton_2 == 4 && suma==true){
-		num2 = 2222;
-	}
-
-	const item2 = document.createElement("span");
-	const textoItem2 = document.createTextNode("2");
-	item2.appendChild(textoItem2);
-	calculo.appendChild(item2);
-})
-boton3.addEventListener("click",function(){
-	boton_3 += 1;
-
-	if (suma == true) {
-		num2 += 3;
-	}else{
-		num1 += 3;
-	}
-
-	if (boton_3 == 2 && suma==false) {
-		num1 = 33;
-	}else if (boton_3 == 3 && suma==false){
-		num1 = 333;
-	}else if (boton_3 == 4 && suma==false){
-		num1 = 3333;
-	}
-
-
-	if (boton_3 == 2 && suma==true) {
-		num2 = 33;
-	}else if (boton_3 == 3 && suma==true){
-		num2 = 333;
-	}else if (boton_3 == 4 && suma==true){
-		num2 = 3333;
-	}
-
-
-	const item3 = document.createElement("span");
-	const textoItem3 = document.createTextNode("3");
-	item3.appendChild(textoItem3);
-	calculo.appendChild(item3);
-})
-boton4.addEventListener("click",function(){
-	boton_4 += 1;
-
-	if (suma == true) {
-		num2 += 4;
-	}else{
-		num1 += 4;
-	}
-
-	if (boton_4 == 2 && suma==false) {
-		num1 = 44;
-	}else if (boton_4== 3 && suma==false){
-		num1 = 444;
-	}else if (boton_4 == 4 && suma==false){
-		num1 = 4444;
-	}
-
-
-	if (boton_4 == 2 && suma==true) {
-		num2 = 44;
-	}else if (boton_4 == 3 && suma==true){
-		num2 = 444;
-	}else if (boton_4 == 4 && suma==true){
-		num2 = 4444;
-	}
-
-
-
-	const item4 = document.createElement("span");
-	const textoItem4 = document.createTextNode("4");
-	item4.appendChild(textoItem4);
-	calculo.appendChild(item4);
-
-})
-boton5.addEventListener("click",function(){
-	boton_5 += 1;
-
-	if (suma == true) {
-		num2 += 5;
-	}else{
-		num1 += 5;
-	}
-
-	if (boton_5 == 2 && suma==false) {
-		num1 = 55;
-	}else if (boton_5 == 3 && suma==false){
-		num1 = 555;
-	}else if (boton_5 == 4 && suma==false){
-		num1 = 5555;
-	}
-
-
-	if (boton_5 == 2 && suma==true) {
-		num2 = 55;
-	}else if (boton_5 == 3 && suma==true){
-		num2 = 555;
-	}else if (boton_5 == 4 && suma==true){
-		num2 = 5555;
-	}
-
-
-	const item5 = document.createElement("span");
-	const textoItem5 = document.createTextNode("5");
-	item5.appendChild(textoItem5);
-	calculo.appendChild(item5);
-
-})
-boton6.addEventListener("click",function(){
-	boton_6 += 1;
-
-	if (suma == true) {
-		num2 += 6;
-	}else{
-		num1 += 6;
-	}
-
-	if (boton_6 == 2 && suma==false) {
-		num1 = 66;
-	}else if (boton_6 == 3 && suma==false){
-		num1 = 666;
-	}else if (boton_6 == 4 && suma==false){
-		num1 = 6666;
-	}
-
-
-	if (boton_6 == 2 && suma==true) {
-		num2 = 66;
-	}else if (boton_6 == 3 && suma==true){
-		num2 = 666;
-	}else if (boton_6 == 4 && suma==true){
-		num2 = 6666;
-	}
-
-
-	const item6 = document.createElement("span");
-	const textoItem6 = document.createTextNode("6");
-	item6.appendChild(textoItem6);
-	calculo.appendChild(item6);
-})
-boton7.addEventListener("click",function(){
-	boton_7 += 1;
-
-	if (suma == true) {
-		num2 += 7;
-	}else{
-		num1 += 7;
-	}
-
-	if (boton_7 == 2 && suma==false) {
-		num1 = 77;
-	}else if (boton_7 == 3 && suma==false){
-		num1 = 777;
-	}else if (boton_7 == 4 && suma==false){
-		num1 = 7777;
-	}
-
-
-	if (boton_7 == 2 && suma==true) {
-		num2 = 77;
-	}else if (boton_7 == 3 && suma==true){
-		num2 = 777;
-	}else if (boton_7 == 4 && suma==true){
-		num2 = 7777;
-	}
-
-
-	const item7 = document.createElement("span");
-	const textoItem7 = document.createTextNode("7");
-	item7.appendChild(textoItem7);
-	calculo.appendChild(item7);
-})
-boton8.addEventListener("click",function(){
-	boton_8 += 1;
-
-	if (suma == true) {
-		num2 += 8;
-	}else{
-		num1 += 8;
-	}
-
-	if (boton_8 == 2 && suma==false) {
-		num1 = 88;
-	}else if (boton_8 == 3 && suma==false){
-		num1 = 888;
-	}else if (boton_8 == 4 && suma==false){
-		num1 = 8888;
-	}
-
-
-	if (boton_8 == 2 && suma==true) {
-		num2 = 88;
-	}else if (boton_8 == 3 && suma==true){
-		num2 = 888;
-	}else if (boton_8 == 4 && suma==true){
-		num2 = 8888;
-	}
-
-
-	const item8 = document.createElement("span");
-	const textoItem8 = document.createTextNode("8");
-	item8.appendChild(textoItem8);
-	calculo.appendChild(item8);
-})
-boton9.addEventListener("click",function(){
-	boton_9 += 1;
-
-	if (suma == true) {
-		num2 += 9;
-	}else{
-		num1 += 9;
-	}
-
-	if (boton_9 == 2 && suma==false) {
-		num1 = 99;
-	}else if (boton_9 == 3 && suma==false){
-		num1 = 999;
-	}else if (boton_9 == 4 && suma==false){
-		num1 = 9999;
-	}
-
-
-	if (boton_9 == 2 && suma==true) {
-		num2 = 99;
-	}else if (boton_9 == 3 && suma==true){
-		num2 = 999;
-	}else if (boton_9 == 4 && suma==true){
-		num2 = 9999;
-	}
-
-
-	const item9 = document.createElement("span");
-	const textoItem9 = document.createTextNode("9");
-	item9.appendChild(textoItem9);
-	calculo.appendChild(item9);
-})
-boton0.addEventListener("click",function(){
-	boton_0 += 1;
-
-	if (suma == true) {
-		num2 += 0;
-	}else{
-		num1 += 0;
-	}
-
-	if (boton_0 == 2 && suma==false) {
-		num1 = 0;
-	}else if (boton_0 == 3 && suma==false){
-		num1 = 0;
-	}else if (boton_0 == 4 && suma==false){
-		num1 = 0;
-	}
-
-
-	if (boton_0 == 2 && suma==true) {
-		num2 = 0;
-	}else if (boton_0 == 3 && suma==true){
-		num2 = 0;
-	}else if (boton_0 == 4 && suma==true){
-		num2 = 0;
-	}
-
-
-	const item0 = document.createElement("span");
-	const textoItem0 = document.createTextNode("0");
-	item0.appendChild(textoItem0);
-	calculo.appendChild(item0);
-})
-botSuma.addEventListener("click",function(){
-	const itemSuma = document.createElement("span");
-	const textoItemSuma = document.createTextNode("+");
-	itemSuma.appendChild(textoItemSuma);
-	calculo.appendChild(itemSuma);
-
-	suma = true;
-	boton_1 = 0;
-	boton_2 = 0;
-	boton_3 = 0;
-	boton_4 = 0;
-	boton_5 = 0;
-	boton_6 = 0;
-	boton_7 = 0;
-	boton_8 = 0;
-	boton_9 = 0;
-	boton_0 = 0;
-	
-})
-botIgual.addEventListener("click",function(){
-	
-
-	let res = num1+num2;
-	const itemRes = document.createElement("h1");
-	const textoItemRes = document.createTextNode(res);
-	itemRes.appendChild(textoItemRes);
-	respuesta.appendChild(itemRes);
-})
-
-

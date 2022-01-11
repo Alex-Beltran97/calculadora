@@ -1,45 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="./style.css">
-		<title>Prueba</title>
-	<body>
-		<center>
-			
-	<main id="fondo">
-		<center>
-			
-		<section id="contenedor">
-			<button class="boton" id="1">1</button>
-			<button class="boton" id="2">2</button>
-			<button class="boton" id="3">3</button>
-			<button class="boton" id="4">4</button>
-			<button class="boton" id="5">5</button>
-			<button class="boton" id="6">6</button>
-			<button class="boton" id="7">7</button>
-			<button class="boton" id="8">8</button>
-			<button class="boton" id="9">9</button>
-			<button class="boton" id="0">0</button>
-			<button class="boton" id="suma">+</button>
-			<button class="boton" id="igual">=</button>
-		</section>
-		<br>
-		<div id="calculo" >
-		</div>
-		<hr>
-		<footer>
-			<label>La respuesta es:</label>
-			<div id="respuesta">
-								
-			</div>
-		</footer>
-
-		</center>
-	</main>
-		</center>
-	<!-- 	script -->
-	<script src="./app.js"></script>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora</title>
+</head>
+<body>
+    <h1 class="prompt">0</h1>
+    <div class="container">
+        <div class="numbers">
+            <button class="btn btn_n1">1</button>
+            <button class="btn btn_n2">2</button>
+            <button class="btn btn_n3">3</button>
+            <button class="btn btn_n4">4</button>
+            <button class="btn btn_n5">5</button>
+            <button class="btn btn_n6">6</button>
+            <button class="btn btn_n7">7</button>
+            <button class="btn btn_n8">8</button>
+            <button class="btn btn_n9">9</button>
+            <button class="btn btn_n0">0</button>
+            <button class="btn btn_comma">,</button>
+            <button class="btn btn_result">=</button>
+        </div>
+        <div class="functions">
+            <button class="btn btn_clear">C</button>
+            <button class="btn btn_suma">+</button>
+            <button class="btn btn_resta">-</button>
+            <button class="btn btn_multi">*</button>
+            <button class="btn btn_div">/</button>
+        </div>
+    </div>
+    <p class="result">=0</p>
+    <!-- scripts -->
+    <script src="./app.js"></script>
+</body>
 </html>
